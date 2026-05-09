@@ -1,0 +1,42 @@
+# configs/base.yaml
+# Reproduces Hooda & Kumar (2025) Table 2 exactly.
+# Override any field from the CLI with --key value.
+
+# ── Model ──────────────────────────────────────────────────────────────────
+model_name: "Qwen/Qwen2.5-7B-Instruct"
+# Smoke-test alternative (no GPU required):
+# model_name: "distilgpt2"
+
+# ── Dataset ────────────────────────────────────────────────────────────────
+dataset_name: "Anthropic/hh-rlhf"
+train_split: "train"
+train_size: 3000          # examples in the noisy training pool
+eval_size: 400            # clean held-out examples (never noised)
+judge_size: 50            # subset for GPT-4o win-rate evaluation
+seed: 42
+
+# ── Training ───────────────────────────────────────────────────────────────
+train_steps: 8000         # gradient steps (after accumulation)
+gradient_accumulation_steps: 4
+per_device_batch_size: 1  # effective batch = per_device × accum = 4
+learning_rate: 5.0e-5
+lr_schedule: "cosine"
+warmup_ratio: 0.03
+max_seq_length: 512
+max_grad_norm: 1.0
+weight_decay: 0.0
+
+# ── DPO ────────────────────────────────────────────────────────────────────
+beta: 0.1                 # KL regularisation temperature
+
+# ── Output ─────────────────────────────────────────────────────────────────
+output_dir: "results"
+save_steps: 1000          # save checkpoint every N steps
+logging_steps: 50
+
+# ── Smoke test overrides (set via --smoke_test flag in scripts) ────────────
+smoke_test_model: "distilgpt2"
+smoke_test_train_size: 64
+smoke_test_eval_size: 16
+smoke_test_judge_size: 8
+smoke_test_train_steps: 20

@@ -1,0 +1,33 @@
+# configs/noise.yaml
+# Noise sweep and per-method epsilon settings.
+
+# ── Noise levels ──────────────────────────────────────────────────────────
+# Matches paper Section 5.2: {0, 10, 20, 30, 40}%
+flip_probs:
+  - 0.0
+  - 0.1
+  - 0.2
+  - 0.3
+  - 0.4
+
+# ── Methods to run ────────────────────────────────────────────────────────
+methods:
+  - vanilla
+  - cdpo
+  - rdpo
+  - ropo
+
+# ── cDPO ──────────────────────────────────────────────────────────────────
+# Paper uses oracle ε (true flip_prob) for cDPO.
+cdpo_use_oracle: true
+cdpo_epsilon: 0.2        # used only when cdpo_use_oracle=false
+
+# ── rDPO ──────────────────────────────────────────────────────────────────
+# Paper uses oracle ε for rDPO (upper bound; acknowledged as limitation).
+rdpo_use_oracle: true
+rdpo_epsilon: 0.2        # used only when rdpo_use_oracle=false
+
+# ── ROPO ──────────────────────────────────────────────────────────────────
+# α=14 is the paper default (Section 4.3).
+# Ablation values to try: {6, 14, 30}
+ropo_alpha: 14.0

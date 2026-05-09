@@ -1,0 +1,21 @@
+# configs/lora.yaml
+# LoRA adapter settings — matches paper (Section 5.1).
+
+use_lora: true
+
+# Adapter rank & scaling
+lora_r: 16
+lora_alpha: 32           # scaling = lora_alpha / lora_r = 2.0
+lora_dropout: 0.05
+
+# Which linear layers to attach adapters to.
+# "all-linear" works for Qwen2.5 and most modern models.
+# Fallback for GPT-2 family: ["c_attn", "c_proj"]
+lora_target_modules: "all-linear"
+
+# Task type
+task_type: "CAUSAL_LM"
+
+# Quantisation (set to true to use 4-bit base model on smaller GPUs)
+load_in_4bit: false
+load_in_8bit: false

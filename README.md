@@ -1,4 +1,4 @@
-# Robust DPO — Full Experimental Codebase
+# Robustness of LLM Preference Alignment to Noisy Human Feedback
 
 A systematic empirical study of vanilla DPO,
 cDPO, rDPO, and ROPO under symmetric label noise on Qwen2.5-7B-Instruct + HH-RLHF.

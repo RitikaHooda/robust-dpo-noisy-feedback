@@ -58,7 +58,7 @@ python scripts/run_judge.py --results_dir results/
 jupyter notebook notebooks/results_analysis.ipynb
 ```
 
-## Reproducing Table 2 (paper results)
+## Reproducing Table 2 (report results)
 
 All defaults in `configs/base.yaml` match the paper exactly:
 - Model: `Qwen/Qwen2.5-7B-Instruct`
